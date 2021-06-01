@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -22,11 +22,15 @@ function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const componentDidMount = async () => {
-    const response = await api.get('/foods');
+  useEffect(() => {
+    async function callData() {
+      const response = await api.get('/foods');
 
-    setFoods(response.data);
-  }
+      setFoods(response.data);
+    };
+
+    callData();
+  }, []);
 
   const handleAddFood = async (food: IFood) => {
     try {

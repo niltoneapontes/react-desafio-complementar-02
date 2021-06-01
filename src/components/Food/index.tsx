@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 
 import { Container } from './styles';
@@ -44,7 +44,7 @@ function Food({ key, food, handleDelete, handleEditFood }: FoodProps) {
           <h2>{food.name}</h2>
           <p>{food.description}</p>
           <p className="price">
-            R$ <b>{food.price}</b>
+            R$ <b>{food.price.replace('.', ',')}</b>
           </p>
         </section>
         <section className="footer">
